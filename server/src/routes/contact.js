@@ -1,13 +1,15 @@
 const express = require("express");
 
-const contactValidation = require("../validation/contactValidation");
-const validate = require("../middleware/validate");
 const { submitContact } = require("../controllers/contactController");
+const validate = require("../middleware/validate");
+const contactLimiter = require("../middleware/rateLimit");
+const contactValidation = require("../validation/contactValidation");
 
 const router = express.Router();
 
 router.post(
   "/",
+  contactLimiter,
   contactValidation,
   validate,
   submitContact

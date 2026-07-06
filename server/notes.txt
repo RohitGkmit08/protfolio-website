@@ -126,3 +126,32 @@ Express (Backend API)
 Nodemailer is a Node.js library that allows secure connection to an external email service (SMTP server) using credentials (USER, PASS) to send dynamic HTML or plain-text messages.
 
 
+6. client
+   │
+   ▼
+POST /api/contact
+   │
+   ▼
+routes/contact.js
+   │
+   ▼
+contactValidation.js
+   │
+   ▼
+validate.js
+   │
+   ▼
+contactController.js
+   │
+   ├────────► ContactMessage Model
+   │              │
+   │              ▼
+   │         MongoDB Atlas
+   │
+   └────────► sendContactEmail()
+                  │
+                  ▼
+             Nodemailer
+                  │
+                  ▼
+              Gmail SMTP
