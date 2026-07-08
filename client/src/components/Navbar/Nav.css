@@ -120,7 +120,6 @@
     color var(--transition-fast);
 }
 
-.pill-links a:hover,
-.pill-links a.active {
+.pill-links a:hover {
   background: var(--credit);
 }

@@ -3,76 +3,84 @@ import "./Projects.css";
 
 function Projects() {
   return (
-    <section className="projects dark" id="projects">
+    <section className="projects dark" id="projects" aria-labelledby="projects-heading">
       <div className="container">
         
-        <div className="sec-head">
-          <span className="sec-num">03 / ENTRIES</span>
-          <h2 className="sec-title">Projects</h2>
-        </div>
+        <header className="section-header">
+          <span className="section-number">03 / ENTRIES</span>
+          <h2 className="section-title" id="projects-heading">Projects</h2>
+        </header>
 
-        <div className="entry-grid">
+        <div className="projects-grid">
           {projectsData.map((project) => (
-            <div className="entry" key={project.id}>
+            <article className="project-card" key={project.id}>
               
-              <div className="entry-head">
-                <span className="entry-no">{project.entryNo}</span>
-                <div className="entry-links">
-                  {typeof project.github === "string" ? (
+              <header className="project-header">
+                <span className="project-number">{project.entryNo}</span>
+                
+                <div className="project-links">
+                  {project.github.frontend && !project.github.backend && (
                     <a 
-                      className="entry-link" 
-                      href={project.github} 
+                      className="project-link" 
+                      href={project.github.frontend} 
                       target="_blank" 
                       rel="noopener noreferrer"
+                      aria-label={`${project.title} GitHub repository (opens in new tab)`}
                     >
                       GitHub ↗
                     </a>
-                  ) : (
+                  )}
+
+                  {project.github.frontend && project.github.backend && (
                     <>
                       <a 
-                        className="entry-link" 
+                        className="project-link" 
                         href={project.github.frontend} 
                         target="_blank" 
                         rel="noopener noreferrer"
+                        aria-label={`${project.title} frontend repository (opens in new tab)`}
                       >
                         Frontend ↗
                       </a>
                       <a 
-                        className="entry-link" 
+                        className="project-link" 
                         href={project.github.backend} 
                         target="_blank" 
                         rel="noopener noreferrer"
+                        aria-label={`${project.title} backend repository (opens in new tab)`}
                       >
                         Backend ↗
                       </a>
                     </>
                   )}
                 </div>
-              </div>
+              </header>
 
-              <div className="entry-title">{project.title}</div>
+              <h3 className="project-title">{project.title}</h3>
 
-              <div className="entry-cols">
+              <div className="project-details">
                 
-                <div className="dr">
-                  <div className="entry-col-label">Built with</div>
+                <aside className="project-column built-with" aria-label="Technologies used">
+                  <div className="project-column-label">Built with</div>
                   <p>{project.builtWith}</p>
-                </div>
+                </aside>
 
-                <div className="cr">
-                  <div className="entry-col-label">Delivered</div>
+                <aside className="project-column delivered" aria-label="Features delivered">
+                  <div className="project-column-label">Delivered</div>
                   <p>{project.delivered}</p>
-                </div>
+                </aside>
 
               </div>
 
-              <div className="tag-row">
-                {project.tags.map((tag, idx) => (
-                  <span className="tag" key={idx}>{tag}</span>
+              <div className="project-tags">
+                {project.tags.map((tag) => (
+                  <span className="project-tag" key={tag}>
+                    {tag}
+                  </span>
                 ))}
               </div>
 
-            </div>
+            </article>
           ))}
         </div>
 
