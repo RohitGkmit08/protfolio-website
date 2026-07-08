@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
+const mongoSanitize = require("./middleware/mongoSanitize");
 const contactRoutes = require("./routes/contact");
 
 const app = express();

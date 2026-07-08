@@ -1125,3 +1125,38 @@ Spam Protection
 
 Email Abuse Prevention
 -> Prevent mass email sending
+
+Security Safeguards Implemented:
+1. Helmet Middleware (server/):
+Installed and mounted helmet inside app.js
+to set secure HTTP response headers (preventing clickjacking, content type sniffing, HSTS bypasses)
+
+2. NoSQL Injection Prevention (server/):
+Installed and mounted express-mongo-sanitize inside app.js
+to scrub incoming request payloads of MongoDB operators (keys starting with $ or .)
+
+3.Input Sanitization & XSS Prevention (server/):
+Appended .escape() sanitization inside contactValidation.js
+to encode raw script tags and HTML character sequences, neutralizing stored cross-site scripting (XSS) payloads.
+
+4.Dynamic CORS Configurations (server/):
+Swapped the hardcoded CORS origin config inside app.js with a dynamic environment variable process.env.CLIENT_URL || "http://localhost:5173".
+
+5.Secure External Links Audited (client/):
+Run a full audit across all React files in client/src/ and verified that 100% of external links targeting a new tab (target="_blank") securely declare the rel="noopener noreferrer" attribute.
+
+-----------------------------------------------------------
+
+SEO (SEARCH ENGINE OPTIMIZATION) IMPLEMENTATION
+
+1. robots.txt
+- Purpose: Directs search engine web crawlers (like Googlebot) on which paths they are allowed to index on your site.
+- Implementation: Placed in the public/ folder (copied to build root). Tells bots where your sitemap.xml is located.
+
+2. sitemap.xml
+- Purpose: Provides a structured XML list of all URLs on your website to ensure search engines can discover, crawl, and index your pages.
+- Implementation: Placed in public/ public directory.
+
+3. favicon.svg
+- Purpose: Custom branding icon loaded in the browser tab.
+- Implementation: Reference linked inside index.html. Adding the SVG prevents console 404 resource errors and integrates branding.
