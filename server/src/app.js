@@ -6,10 +6,8 @@ const contactRoutes = require("./routes/contact");
 
 const app = express();
 
-// Secure HTTP response headers
 app.use(helmet());
 
-// Sanitize user inputs against NoSQL injections
 app.use(mongoSanitize());
 
 app.use(express.json());
